@@ -1,5 +1,10 @@
 package io.github.laplacedemon;
 
+/**
+ * Exclusive lock
+ * @author zhuoyun
+ *
+ */
 public class AsyncMutex {
     private AsyncSemaphore as;
     
@@ -13,7 +18,11 @@ public class AsyncMutex {
         });
     }
     
-    public void release(Object o) {
+    public void unlock() {
         as.release();
+    }
+
+    public boolean isLock() {
+        return as.isLock();
     }
 }

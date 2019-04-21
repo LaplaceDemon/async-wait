@@ -30,4 +30,8 @@ public class AtomicNonNegativeInteger {
         int i = this.ai.get();
         return i == 0;
     }
+
+    public int get() {
+        return ai.get();
+    }
 }

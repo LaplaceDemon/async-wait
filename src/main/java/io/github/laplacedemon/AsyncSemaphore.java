@@ -14,7 +14,9 @@ public class AsyncSemaphore {
     private Consumer<Runnable> taskConsumer;
     
     public AsyncSemaphore(int capacity) {
+        this.lock = new Object();
         this.ai = new AtomicNonNegativeInteger(capacity);
+        this.waitingQueue = new ConcurrentLinkedQueue<>();
         this.taskConsumer = (Runnable task)-> {
             CompletableFuture.runAsync(task);
         };
@@ -73,4 +75,7 @@ public class AsyncSemaphore {
         return capacity;
     }
     
+    public boolean isLock() {
+        return this.ai.get() == 0;
+    }
 }
