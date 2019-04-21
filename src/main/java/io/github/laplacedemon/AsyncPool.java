@@ -61,9 +61,7 @@ public class AsyncPool<T> {
                 // pool is not empty
                 if(instance != null) {
                     this.execute(() -> {
-                        if(co != null) {
-                            co.accept(instance);
-                        }
+                        co.accept(instance);
                     });
                     
                     return ;
@@ -90,12 +88,12 @@ public class AsyncPool<T> {
     }
 
     public void tryGet(Consumer<T> co, int tryCount) {
+        Objects.requireNonNull(co);
+        
         for(int sp = 0; sp < tryCount; sp++) {
             final T instance = this.pool.poll();
             this.execute(() -> {
-                if(co != null) {
-                    co.accept(instance);
-                }
+                co.accept(instance);
             });
         }
     }

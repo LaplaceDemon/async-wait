@@ -1,21 +1,19 @@
 package io.github.laplacedemon;
 
 public class AsyncMutex {
-    private AsyncPool<Object> asyncPool;
+    private AsyncSemaphore as;
     
     public AsyncMutex() {
-        asyncPool = new AsyncPool<>(1, ()-> {
-            return new Object();
-        });
+        as = new AsyncSemaphore(1);
     }
     
     public void asyncLock(Runnable callback) {
-        asyncPool.asyncGet((Object o) -> {
+        as.asyncAcquire(() -> {
             callback.run();
         });
     }
     
-    public void unLock(Object o) {
-        asyncPool.returnBack(o);
+    public void release(Object o) {
+        as.release();
     }
 }
