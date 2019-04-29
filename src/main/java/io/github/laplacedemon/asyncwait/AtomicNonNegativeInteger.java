@@ -1,4 +1,4 @@
-package io.github.laplacedemon;
+package io.github.laplacedemon.asyncwait;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

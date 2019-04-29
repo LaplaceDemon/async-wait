@@ -2,6 +2,8 @@ package io.github.laplacedemon;
 
 import org.junit.Test;
 
+import io.github.laplacedemon.asyncwait.AsyncMutex;
+
 public class TestAsyncMutex {
 
     @Test

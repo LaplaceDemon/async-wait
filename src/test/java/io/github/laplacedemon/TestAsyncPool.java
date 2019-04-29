@@ -4,6 +4,8 @@ import java.util.concurrent.CountDownLatch;
 
 import org.junit.Test;
 
+import io.github.laplacedemon.asyncwait.AsyncPool;
+
 public class TestAsyncPool {
     
     @Test

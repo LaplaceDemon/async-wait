@@ -1,4 +1,4 @@
-package io.github.laplacedemon;
+package io.github.laplacedemon.asyncwait;
 
 public class Ref<T> {
     public T value;
