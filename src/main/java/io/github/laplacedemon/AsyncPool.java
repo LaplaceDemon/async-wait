@@ -32,6 +32,17 @@ public class AsyncPool<T> {
         };
     }
     
+    public AsyncPool(int capacity) {
+        this.lock = new Object();
+        this.pool = new ConcurrentLinkedQueue<>();
+        this.waitingQueue = new ConcurrentLinkedQueue<Consumer<T>>();
+        this.capacity = capacity;
+        
+        this.taskConsumer = (Runnable task)-> {
+            CompletableFuture.runAsync(task);
+        };
+    }
+    
     public void returnBack(T instance) {
         Objects.requireNonNull(instance);
         
@@ -110,4 +121,7 @@ public class AsyncPool<T> {
         return capacity;
     }
     
+    public void add(T instance) {
+        this.returnBack(instance);
+    }
 }
